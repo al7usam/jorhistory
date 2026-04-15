@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transparent Table - Jordanian Royal Quotes</title>
+
     <style>
         * {
             margin: 0;
@@ -53,7 +54,6 @@
             overflow: hidden;
         }
 
-        /* العمود الأول عرضه 25% */
         td:first-child {
             width: 25%;
         }
@@ -64,12 +64,10 @@
             box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
         }
 
-        /* محاذاة النص لليمين */
         .right-align {
             text-align: right !important;
         }
 
-        /* النص الصحراوي المميز */
         .desert-text {
             color: #E6B89C;
             font-size: 1.15rem;
@@ -80,7 +78,6 @@
             margin-bottom: 15px;
         }
 
-        /* اسم الملك - أبيض وحجم أكبر بمقدار 2 بكسل */
         .king-name {
             color: #FFFFFF;
             font-size: 1.3rem;
@@ -91,7 +88,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* علامة الاقتباس */
         .quote-mark {
             color: #E6B89C;
             font-size: 2.5rem;
@@ -106,34 +102,27 @@
             padding: 10px 0;
         }
 
-        /* فاصل بين الاقتباسين */
         .divider {
             height: 2px;
             background: linear-gradient(90deg, transparent, rgba(230, 184, 156, 0.5), transparent);
             margin: 25px 0;
         }
 
-        /* تنسيق خلايا الفيديو */
+        /* ✅ TOP ROW HEIGHT = 35% */
+        tr:first-child {
+            height: 35vh;
+        }
+
         .video-cell {
             padding: 0;
             position: relative;
-            height: 450px;
+            height: 100%;
         }
 
-        /* خلية الفيديو الثاني - عرض كامل */
         .full-video-cell {
             padding: 0;
             position: relative;
             height: 500px;
-        }
-
-        .full-video-cell video {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 20px;
-            display: block;
-            background: rgba(0, 0, 0, 0.3);
         }
 
         video {
@@ -144,7 +133,11 @@
             display: block;
         }
 
-        /* تنسيق عنوان يوم العلم */
+        .full-video-cell video {
+            object-fit: contain;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
         .flag-day-header {
             text-align: center;
             padding: 20px;
@@ -157,7 +150,6 @@
             font-family: 'Traditional Arabic', 'Arial', sans-serif;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
             margin-bottom: 10px;
-            animation: zoomIn 3s ease-in-out infinite alternate;
         }
 
         .flag-day-subtitle {
@@ -166,7 +158,6 @@
             font-weight: 600;
             font-family: 'Traditional Arabic', 'Arial', sans-serif;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-            animation: zoomOut 3s ease-in-out infinite alternate;
         }
 
         .header-divider {
@@ -174,72 +165,38 @@
             background: linear-gradient(90deg, transparent, #E6B89C, transparent);
             margin: 20px auto;
             width: 80%;
-            opacity: 0.7;
         }
 
-        @keyframes zoomIn {
-            0% {
-                transform: scale(0.95);
-                opacity: 0.8;
-            }
-            100% {
-                transform: scale(1.05);
-                opacity: 1;
-            }
-        }
-
-        @keyframes zoomOut {
-            0% {
-                transform: scale(1.05);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(0.95);
-                opacity: 0.8;
-            }
-        }
-
-        /* للشاشات الصغيرة */
         @media (max-width: 768px) {
-            td:first-child {
-                width: 100%;
-                display: block;
-            }
-            
             td {
                 display: block;
                 width: 100% !important;
                 margin-bottom: 20px;
             }
-            
+
             tr {
                 display: block;
             }
 
-            .video-cell, .full-video-cell {
+            .full-video-cell {
                 height: 300px;
-            }
-
-            .flag-day-title {
-                font-size: 1.6rem;
-            }
-
-            .flag-day-subtitle {
-                font-size: 1.3rem;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="table-container">
         <table>
+
+            <!-- TOP ROW -->
             <tr>
                 <td class="video-cell">
-                    <video autoplay loop muted playsinline>
+                    <video autoplay loop muted playsinline preload="auto">
                         <source src="jorflag.mp4" type="video/mp4">
-                        متصفحك لا يدعم تشغيل الفيديو
                     </video>
                 </td>
+
                 <td>
                     <div class="flag-day-header">
                         <h1 class="flag-day-title">يوم العلم - المملكة الأردنية الهاشمية</h1>
@@ -248,9 +205,11 @@
                     </div>
                 </td>
             </tr>
+
+            <!-- SECOND ROW -->
             <tr>
                 <td class="right-align">
-                    <!-- الاقتباس الأول -->
+
                     <div class="quote-container">
                         <span class="quote-mark">"</span>
                         <div class="desert-text">
@@ -262,23 +221,24 @@
 
                     <div class="divider"></div>
 
-                    <!-- الاقتباس الثاني -->
                     <div class="quote-container">
                         <span class="quote-mark">"</span>
                         <div class="desert-text">
                             سيبقى علمنا الأردني رمزاً لشموخنا، وعنواناً لوحدتنا الوطنية، ورايةً تجمعنا على حب هذا الوطن والوفاء له ولرسالته.
                         </div>
                         <span class="quote-mark">"</span>
-                        <span class="king-name">— الملك عبد الله بن الحسين</span>
+                        <span class="king-name">— الملك عبد الله الثاني</span>
                     </div>
+
                 </td>
+
                 <td class="full-video-cell">
-                    <video autoplay loop playsinline>
+                    <video autoplay loop muted playsinline preload="auto">
                         <source src="history1.mp4" type="video/mp4">
-                        متصفحك لا يدعم تشغيل الفيديو
                     </video>
                 </td>
             </tr>
+
         </table>
     </div>
 </body>
