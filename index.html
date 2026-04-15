@@ -39,12 +39,10 @@
             border-spacing: 20px;
         }
 
-        /* ارتفاع الصف الأول 35% من الصفحة */
         tr:first-child {
             height: 35vh;
         }
 
-        /* ارتفاع الصف الثاني 65% من الصفحة */
         tr:last-child {
             height: 65vh;
         }
@@ -64,7 +62,6 @@
             overflow: hidden;
         }
 
-        /* العمود الأول عرضه 25% */
         td:first-child {
             width: 25%;
         }
@@ -75,12 +72,10 @@
             box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
         }
 
-        /* محاذاة النص لليمين */
         .right-align {
             text-align: right !important;
         }
 
-        /* النص الصحراوي المميز */
         .desert-text {
             color: #E6B89C;
             font-size: 1.15rem;
@@ -91,7 +86,6 @@
             margin-bottom: 15px;
         }
 
-        /* اسم الملك - أبيض وحجم أكبر بمقدار 2 بكسل */
         .king-name {
             color: #FFFFFF;
             font-size: 1.3rem;
@@ -102,7 +96,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* علامة الاقتباس */
         .quote-mark {
             color: #E6B89C;
             font-size: 2.5rem;
@@ -117,14 +110,12 @@
             padding: 10px 0;
         }
 
-        /* فاصل بين الاقتباسين */
         .divider {
             height: 2px;
             background: linear-gradient(90deg, transparent, rgba(230, 184, 156, 0.5), transparent);
             margin: 25px 0;
         }
 
-        /* تنسيق خلايا الفيديو */
         .video-cell {
             padding: 0;
             position: relative;
@@ -139,7 +130,6 @@
             display: block;
         }
 
-        /* خلية الفيديو الثاني - عرض كامل */
         .full-video-cell {
             padding: 0;
             position: relative;
@@ -155,7 +145,6 @@
             background: rgba(0, 0, 0, 0.3);
         }
 
-        /* تنسيق عنوان يوم العلم */
         .flag-day-header {
             text-align: center;
             padding: 20px;
@@ -189,67 +178,43 @@
         }
 
         @keyframes zoomIn {
-            0% {
-                transform: scale(0.95);
-                opacity: 0.8;
-            }
-            100% {
-                transform: scale(1.05);
-                opacity: 1;
-            }
+            0% { transform: scale(0.95); opacity: 0.8; }
+            100% { transform: scale(1.05); opacity: 1; }
         }
 
         @keyframes zoomOut {
-            0% {
-                transform: scale(1.05);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(0.95);
-                opacity: 0.8;
-            }
+            0% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.8; }
         }
 
-        /* للشاشات الصغيرة */
         @media (max-width: 768px) {
-            tr:first-child {
-                height: auto;
-            }
-            
-            tr:last-child {
-                height: auto;
-            }
+            tr:first-child { height: auto; }
+            tr:last-child { height: auto; }
 
             td:first-child {
                 width: 100%;
                 display: block;
             }
-            
+
             td {
                 display: block;
                 width: 100% !important;
                 margin-bottom: 20px;
                 height: auto !important;
             }
-            
-            tr {
-                display: block;
-            }
+
+            tr { display: block; }
 
             .video-cell, .full-video-cell {
                 height: 300px !important;
             }
 
-            .flag-day-title {
-                font-size: 1.6rem;
-            }
-
-            .flag-day-subtitle {
-                font-size: 1.3rem;
-            }
+            .flag-day-title { font-size: 1.6rem; }
+            .flag-day-subtitle { font-size: 1.3rem; }
         }
     </style>
 </head>
+
 <body>
     <div class="table-container">
         <table>
@@ -268,9 +233,9 @@
                     </div>
                 </td>
             </tr>
+
             <tr>
                 <td class="right-align">
-                    <!-- الاقتباس الأول -->
                     <div class="quote-container">
                         <span class="quote-mark">"</span>
                         <div class="desert-text">
@@ -282,7 +247,6 @@
 
                     <div class="divider"></div>
 
-                    <!-- الاقتباس الثاني -->
                     <div class="quote-container">
                         <span class="quote-mark">"</span>
                         <div class="desert-text">
@@ -292,8 +256,9 @@
                         <span class="king-name">— الملك عبد الله بن الحسين</span>
                     </div>
                 </td>
+
                 <td class="full-video-cell">
-                    <video autoplay loop muted playsinline>
+                    <video id="historyVideo" autoplay loop playsinline>
                         <source src="history1.mp4" type="video/mp4">
                         متصفحك لا يدعم تشغيل الفيديو
                     </video>
@@ -301,5 +266,16 @@
             </tr>
         </table>
     </div>
+
+    <script>
+        const video = document.getElementById('historyVideo');
+
+        video.muted = false;
+        video.volume = 1;
+
+        video.play().catch(() => {
+            console.log("Autoplay with sound blocked by browser.");
+        });
+    </script>
 </body>
 </html>
