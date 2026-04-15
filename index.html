@@ -1,100 +1,69 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transparent Table - Jordanian Royal Quotes</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jordan Page</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        html, body {
-            min-height: 100vh;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77);
-            font-family: 'Segoe UI', 'Traditional Arabic', Tahoma, sans-serif;
-        }
+html, body {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(135deg,#0d1b2a,#1b263b,#415a77);
+    font-family: Arial, sans-serif;
+}
 
-        .table-container {
-            width: 100%;
-            min-height: 100vh;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.table-container {
+    width: 100%;
+    height: 100vh;
+    padding: 20px;
+}
 
-        table {
-            width: 100%;
-            height: 100vh;
-            border-collapse: separate;
-            border-spacing: 20px;
-        }
+table {
+    width: 100%;
+    height: 100vh;
+    border-collapse: separate;
+    border-spacing: 20px;
+}
 
-        /* ✅ TOP ROW = 20% */
-        tr:first-child {
-            height: 20vh;
-        }
+/* TOP ROW = 20% */
+tr:first-child {
+    height: 20%;
+}
 
-        /* BOTTOM ROW = 80% */
-        tr:last-child {
-            height: 80vh;
-        }
+/* BOTTOM ROW = 80% */
+tr:last-child {
+    height: 80%;
+}
 
-        td {
-            padding: 30px;
-            background: rgba(255,255,255,0.08);
-            backdrop-filter: blur(12px);
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.15);
-            color: white;
-            text-align: center;
-            overflow: hidden;
-        }
+td {
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.08);
+    text-align: center;
+}
 
-        td:first-child {
-            width: 25%;
-        }
+/* VIDEO GENERAL */
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
 
-        .video-cell, .full-video-cell {
-            padding: 0;
-            height: 100%;
-        }
+/* SECOND VIDEO BIGGER CONTROL */
+.big-video {
+    height: 100%;
+    object-fit: contain;
+}
+</style>
 
-        video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 20px;
-        }
-
-        .full-video-cell video {
-            object-fit: contain;
-            background: rgba(0,0,0,0.3);
-        }
-
-        .flag-day-header {
-            text-align: center;
-        }
-
-        .flag-day-title {
-            color: #E6B89C;
-            font-size: 2rem;
-            font-weight: bold;
-        }
-
-        .flag-day-subtitle {
-            color: #E6B89C;
-            font-size: 1.5rem;
-        }
-    </style>
 </head>
 
 <body>
@@ -102,50 +71,49 @@
 <div class="table-container">
 <table>
 
-    <!-- TOP ROW -->
-    <tr>
-        <td class="video-cell">
-            <video id="video1" autoplay muted loop playsinline preload="auto">
-                <source src="jorflag.mp4" type="video/mp4">
-            </video>
-        </td>
+<!-- TOP ROW -->
+<tr>
+    <td style="width:25%">
+        <video autoplay muted loop playsinline>
+            <source src="jorflag.mp4">
+        </video>
+    </td>
 
-        <td>
-            <div class="flag-day-header">
-                <h1 class="flag-day-title">يوم العلم - الأردن</h1>
-                <div class="flag-day-subtitle">رمز العزة والفخر</div>
-            </div>
-        </td>
-    </tr>
+    <td>
+        <h2 style="color:#E6B89C">يوم العلم - الأردن</h2>
+    </td>
+</tr>
 
-    <!-- BOTTOM ROW -->
-    <tr>
-        <td>
-            <p style="color:#E6B89C">اقتباسات وطنية</p>
-        </td>
+<!-- BOTTOM ROW -->
+<tr>
 
-        <td class="full-video-cell">
-            <video id="video2" autoplay muted loop playsinline preload="auto">
-                <source src="history1.mp4" type="video/mp4">
-            </video>
-        </td>
-    </tr>
+    <td>
+        <p style="color:white">Quotes Section</p>
+    </td>
+
+    <!-- FLAG VIDEO = 80% HEIGHT -->
+    <td style="height:80%">
+        <video id="historyVideo" autoplay loop playsinline>
+            <source src="history1.mp4">
+        </video>
+    </td>
+
+</tr>
 
 </table>
 </div>
 
 <script>
-    // ✅ FORCE autoplay (fix for Chrome / mobile / GitHub Pages)
-    window.addEventListener("load", () => {
-        const v = document.getElementById("video2");
-        if (v) {
-            v.muted = true;
-            v.play().catch(() => {
-                console.log("Autoplay blocked, retrying...");
-                setTimeout(() => v.play(), 1000);
-            });
-        }
+const video = document.getElementById("historyVideo");
+
+window.addEventListener("load", () => {
+    video.play().then(() => {
+        // try to UNMUTE after autoplay starts
+        video.muted = false;
+    }).catch(() => {
+        console.log("Autoplay blocked with sound — user interaction required");
     });
+});
 </script>
 
 </body>
