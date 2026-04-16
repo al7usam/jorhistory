@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transparent Table - Jordanian Royal Quotes</title>
+
     <style>
         * {
             margin: 0;
@@ -39,12 +40,13 @@
             border-spacing: 20px;
         }
 
+        /* ✅ Top row reduced by 20% */
         tr:first-child {
-            height: 35vh;
+            height: 28vh;
         }
 
         tr:last-child {
-            height: 65vh;
+            height: 72vh;
         }
 
         td {
@@ -116,53 +118,50 @@
             margin: 25px 0;
         }
 
-        .video-cell {
-            padding: 0;
-            position: relative;
-            height: 100%;
-        }
-
-        .video-cell video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 20px;
-            display: block;
-        }
-
+        .video-cell,
         .full-video-cell {
             padding: 0;
             position: relative;
             height: 100%;
         }
 
+        .video-cell video,
         .full-video-cell video {
             width: 100%;
             height: 100%;
-            object-fit: contain;
             border-radius: 20px;
             display: block;
+        }
+
+        .video-cell video {
+            object-fit: cover;
+        }
+
+        .full-video-cell video {
+            object-fit: contain;
             background: rgba(0, 0, 0, 0.3);
         }
 
+        /* Header Styling */
         .flag-day-header {
             text-align: center;
-            padding: 20px;
+            padding: 10px;
+            transform: scale(0.9); /* Zoomed out to fit reduced row */
         }
 
         .flag-day-title {
             color: #E6B89C;
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             font-family: 'Traditional Arabic', 'Arial', sans-serif;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             animation: zoomIn 3s ease-in-out infinite alternate;
         }
 
         .flag-day-subtitle {
             color: #E6B89C;
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             font-weight: 600;
             font-family: 'Traditional Arabic', 'Arial', sans-serif;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
@@ -172,8 +171,8 @@
         .header-divider {
             height: 3px;
             background: linear-gradient(90deg, transparent, #E6B89C, transparent);
-            margin: 20px auto;
-            width: 80%;
+            margin: 10px auto;
+            width: 70%;
             opacity: 0.7;
         }
 
@@ -187,9 +186,12 @@
             100% { transform: scale(0.95); opacity: 0.8; }
         }
 
+        /* Responsive Design */
         @media (max-width: 768px) {
-            tr:first-child { height: auto; }
-            tr:last-child { height: auto; }
+            tr:first-child,
+            tr:last-child {
+                height: auto;
+            }
 
             td:first-child {
                 width: 100%;
@@ -203,14 +205,22 @@
                 height: auto !important;
             }
 
-            tr { display: block; }
+            tr {
+                display: block;
+            }
 
-            .video-cell, .full-video-cell {
+            .video-cell,
+            .full-video-cell {
                 height: 300px !important;
             }
 
-            .flag-day-title { font-size: 1.6rem; }
-            .flag-day-subtitle { font-size: 1.3rem; }
+            .flag-day-title {
+                font-size: 1.4rem;
+            }
+
+            .flag-day-subtitle {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
@@ -218,6 +228,7 @@
 <body>
     <div class="table-container">
         <table>
+            <!-- Top Row -->
             <tr>
                 <td class="video-cell">
                     <video autoplay loop muted playsinline>
@@ -225,6 +236,7 @@
                         متصفحك لا يدعم تشغيل الفيديو
                     </video>
                 </td>
+
                 <td>
                     <div class="flag-day-header">
                         <h1 class="flag-day-title">يوم العلم - المملكة الأردنية الهاشمية</h1>
@@ -234,12 +246,14 @@
                 </td>
             </tr>
 
+            <!-- Bottom Row -->
             <tr>
                 <td class="right-align">
                     <div class="quote-container">
                         <span class="quote-mark">"</span>
                         <div class="desert-text">
-                            إن هذا العلم يمثل تاريخنا وكرامتنا، وهو رمزٌ لاستقلالنا وحريتنا، فاحموه بقلوبكم وارفعوه بهاماتكم، ليبقى دائماً خافقاً في سماء العز والبطولة.
+                            إن هذا العلم يمثل تاريخنا وكرامتنا، وهو رمزٌ لاستقلالنا وحريتنا،
+                            فاحموه بقلوبكم وارفعوه بهاماتكم، ليبقى دائماً خافقاً في سماء العز والبطولة.
                         </div>
                         <span class="quote-mark">"</span>
                         <span class="king-name">— الملك الحسين بن طلال</span>
@@ -250,7 +264,8 @@
                     <div class="quote-container">
                         <span class="quote-mark">"</span>
                         <div class="desert-text">
-                            سيبقى علمنا الأردني رمزاً لشموخنا، وعنواناً لوحدتنا الوطنية، ورايةً تجمعنا على حب هذا الوطن والوفاء له ولرسالته.
+                            سيبقى علمنا الأردني رمزاً لشموخنا، وعنواناً لوحدتنا الوطنية،
+                            ورايةً تجمعنا على حب هذا الوطن والوفاء له ولرسالته.
                         </div>
                         <span class="quote-mark">"</span>
                         <span class="king-name">— الملك عبد الله بن الحسين</span>
@@ -258,7 +273,8 @@
                 </td>
 
                 <td class="full-video-cell">
-                    <video id="historyVideo" autoplay loop playsinline>
+                    <!-- ✅ Autoplay with sound -->
+                    <video id="historyVideo" autoplay loop playsinline preload="auto">
                         <source src="history1.mp4" type="video/mp4">
                         متصفحك لا يدعم تشغيل الفيديو
                     </video>
@@ -270,12 +286,27 @@
     <script>
         const video = document.getElementById('historyVideo');
 
+        // Attempt autoplay with sound
         video.muted = false;
         video.volume = 1;
 
-        video.play().catch(() => {
-            console.log("Autoplay with sound blocked by browser.");
-        });
+        const playPromise = video.play();
+
+        if (playPromise !== undefined) {
+            playPromise.catch(() => {
+                // If blocked, start muted and unmute on interaction
+                video.muted = true;
+                video.play();
+
+                const enableSound = () => {
+                    video.muted = false;
+                    video.volume = 1;
+                    document.removeEventListener('click', enableSound);
+                };
+
+                document.addEventListener('click', enableSound);
+            });
+        }
     </script>
 </body>
 </html>
