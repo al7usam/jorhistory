@@ -40,7 +40,7 @@
             border-spacing: 20px;
         }
 
-        /* ✅ Top row reduced by 20% */
+        /* Top row reduced by 20% */
         tr:first-child {
             height: 28vh;
         }
@@ -125,28 +125,32 @@
             height: 100%;
         }
 
-        .video-cell video,
-        .full-video-cell video {
-            width: 100%;
-            height: 100%;
+        .video-cell {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-cell video {
+            width: 60%;
+            height: 60%;
+            object-fit: contain;
             border-radius: 20px;
             display: block;
         }
 
-        .video-cell video {
-            object-fit: cover;
-        }
-
         .full-video-cell video {
+            width: 100%;
+            height: 100%;
             object-fit: contain;
+            border-radius: 20px;
             background: rgba(0, 0, 0, 0.3);
         }
 
-        /* Header Styling */
         .flag-day-header {
             text-align: center;
             padding: 10px;
-            transform: scale(0.9); /* Zoomed out to fit reduced row */
+            transform: scale(0.9);
         }
 
         .flag-day-title {
@@ -193,11 +197,6 @@
                 height: auto;
             }
 
-            td:first-child {
-                width: 100%;
-                display: block;
-            }
-
             td {
                 display: block;
                 width: 100% !important;
@@ -212,6 +211,11 @@
             .video-cell,
             .full-video-cell {
                 height: 300px !important;
+            }
+
+            .video-cell video {
+                width: 60%;
+                height: auto;
             }
 
             .flag-day-title {
@@ -273,7 +277,6 @@
                 </td>
 
                 <td class="full-video-cell">
-                    <!-- ✅ Autoplay with sound -->
                     <video id="historyVideo" autoplay loop playsinline preload="auto">
                         <source src="history1.mp4" type="video/mp4">
                         متصفحك لا يدعم تشغيل الفيديو
@@ -286,27 +289,33 @@
     <script>
         const video = document.getElementById('historyVideo');
 
-        // Attempt autoplay with sound
-        video.muted = false;
-        video.volume = 1;
+        function attemptAutoplay() {
+            video.muted = false;
+            video.volume = 1;
 
-        const playPromise = video.play();
+            const playPromise = video.play();
 
-        if (playPromise !== undefined) {
-            playPromise.catch(() => {
-                // If blocked, start muted and unmute on interaction
-                video.muted = true;
-                video.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                    // If autoplay with sound is blocked, play muted
+                    video.muted = true;
+                    video.play();
 
-                const enableSound = () => {
-                    video.muted = false;
-                    video.volume = 1;
-                    document.removeEventListener('click', enableSound);
-                };
+                    // Unmute on first user interaction
+                    const unmute = () => {
+                        video.muted = false;
+                        video.volume = 1;
+                        document.removeEventListener('click', unmute);
+                        document.removeEventListener('touchstart', unmute);
+                    };
 
-                document.addEventListener('click', enableSound);
-            });
+                    document.addEventListener('click', unmute, { once: true });
+                    document.addEventListener('touchstart', unmute, { once: true });
+                });
+            }
         }
+
+        window.addEventListener('load', attemptAutoplay);
     </script>
 </body>
 </html>
