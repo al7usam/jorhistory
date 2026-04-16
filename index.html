@@ -169,7 +169,7 @@
     <!-- BOTTOM -->
     <tr class="bottom">
 
-        <!-- BL VIDEO -->
+        <!-- BL -->
         <td>
             <div class="cell">
                 <video id="jordanVideo" class="video-fit" autoplay muted loop playsinline>
@@ -178,7 +178,7 @@
             </div>
         </td>
 
-        <!-- BR QUOTES -->
+        <!-- BR -->
         <td>
             <div class="cell">
                 <div class="br-text">
@@ -207,27 +207,21 @@
 </table>
 
 <script>
-    const video = document.getElementById("jordanVideo");
+    const jordan = document.getElementById("jordanVideo");
 
-    // Try autoplay (muted required)
-    video.play().catch(() => {});
+    // safe autoplay (always allowed because muted)
+    jordan.play().catch(() => {});
 
-    // Unlock sound on ANY first interaction
+    // GLOBAL AUDIO UNLOCK (works across all devices)
     function unlockAudio() {
-        video.muted = false;
-        video.play().catch(() => {});
-        removeListeners();
+        jordan.muted = false;
+        jordan.play().catch(() => {});
     }
 
-    function removeListeners() {
-        window.removeEventListener("click", unlockAudio);
-        window.removeEventListener("touchstart", unlockAudio);
-        window.removeEventListener("keydown", unlockAudio);
-    }
-
-    window.addEventListener("click", unlockAudio);
-    window.addEventListener("touchstart", unlockAudio);
-    window.addEventListener("keydown", unlockAudio);
+    // attach to entire document
+    document.addEventListener("click", unlockAudio, { once: true });
+    document.addEventListener("touchstart", unlockAudio, { once: true });
+    document.addEventListener("keydown", unlockAudio, { once: true });
 </script>
 
 </body>
