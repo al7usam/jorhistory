@@ -40,7 +40,7 @@
             border-spacing: 20px;
         }
 
-        /* Top row reduced by 20% */
+        /* Top row reduced */
         tr:first-child {
             height: 28vh;
         }
@@ -129,14 +129,16 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
         }
 
+        /* Zoom in jorflag.mp4 by 50% */
         .video-cell video {
             width: 60%;
             height: 60%;
             object-fit: contain;
             border-radius: 20px;
-            display: block;
+            transform: scale(1.5);
         }
 
         .full-video-cell video {
@@ -153,9 +155,10 @@
             transform: scale(0.9);
         }
 
+        /* Increase text size by 20% */
         .flag-day-title {
             color: #E6B89C;
-            font-size: 1.8rem;
+            font-size: 2.16rem; /* Increased by 20% */
             font-weight: 700;
             font-family: 'Traditional Arabic', 'Arial', sans-serif;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
@@ -165,7 +168,7 @@
 
         .flag-day-subtitle {
             color: #E6B89C;
-            font-size: 1.4rem;
+            font-size: 1.68rem; /* Increased by 20% */
             font-weight: 600;
             font-family: 'Traditional Arabic', 'Arial', sans-serif;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
@@ -216,14 +219,15 @@
             .video-cell video {
                 width: 60%;
                 height: auto;
+                transform: scale(1.5);
             }
 
             .flag-day-title {
-                font-size: 1.4rem;
+                font-size: 1.7rem;
             }
 
             .flag-day-subtitle {
-                font-size: 1.2rem;
+                font-size: 1.4rem;
             }
         }
     </style>
@@ -297,16 +301,14 @@
 
             if (playPromise !== undefined) {
                 playPromise.catch(() => {
-                    // If autoplay with sound is blocked, play muted
+                    // If autoplay with sound is blocked, play muted first
                     video.muted = true;
                     video.play();
 
-                    // Unmute on first user interaction
+                    // Unmute after first user interaction
                     const unmute = () => {
                         video.muted = false;
                         video.volume = 1;
-                        document.removeEventListener('click', unmute);
-                        document.removeEventListener('touchstart', unmute);
                     };
 
                     document.addEventListener('click', unmute, { once: true });
